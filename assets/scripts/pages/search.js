@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const fuseOptions = {
     shouldSort: true,
     includeMatches: true,
-    threshold: 0.0,
+    threshold: 0.1,
     tokenize: true,
     location: 0,
     distance: 100,
@@ -79,6 +79,13 @@ window.addEventListener('DOMContentLoaded', () => {
       // pull template from hugo template definition
       const templateDefinition = document.getElementById('search-result-template').innerHTML
       // replace values
+      function adaptTags() {
+        const tags = value.item.tags;
+        let string = '';
+        if (tags) tags.forEach((t) => {string += '<li class="rounded"><a href="/tags/' + t.toLowerCase() + '/" class="btn btn-sm btn-info">' + t + "</a></li>"});
+        return string;
+      }
+
       const output = render(templateDefinition, {
         key,
         title: value.item.title,
@@ -86,7 +93,7 @@ window.addEventListener('DOMContentLoaded', () => {
         date: value.item.date,
         summary: value.item.summary,
         link: value.item.permalink,
-        tags: value.item.tags,
+        tags: adaptTags(),
         categories: value.item.categories,
         snippet
       })

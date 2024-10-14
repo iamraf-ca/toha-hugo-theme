@@ -31,6 +31,18 @@
                     </td>
                     <td class="details">
                         <div class="degree-info card">
+
+                            {{ $logoImage:= resources.Get .institution.logo}}
+                            {{ $darkLogoImage:= resources.Get .institution.darkLogo}}
+                            {{ if $logoImage }}
+                            <div class="logo-holder"> 
+                                <img class="company-logo light-logo" src="{{ $logoImage.RelPermalink }}" alt="{{ .name }}" />
+                                {{ if $darkLogoImage }}
+                                <img class="company-logo dark-logo" src="{{ $darkLogoImage.RelPermalink }}" alt="{{ .name }}" />
+                                {{ end }}
+                            </div>
+                            {{ end }}
+
                             <div class="row">
                                 <div class="col-lg-10 col-md-8">
                                     {{ if .institution.url }}
@@ -89,9 +101,9 @@
                                     </ul>
                                 {{ end }}
                                 {{ if gt (len .takenCourses.courses ) $collapseAfter }}
-                                    <button type="button" class="btn btn-link show-more-btn pt-0 {{ if .takenCourses.showGrades }}ml-1{{ else }}ml-2{{ end }}"
+                                    <button type="button" class="btn btn-link show-more-btn pt-0 {{ if .takenCourses.showGrades }}ms-1{{ else }}ms-2{{ end }}"
                                     id="show-more-btn">{{ i18n "show_more"}}</button>
-                                    <button type="button" class="btn btn-link show-more-btn hidden pt-0 {{ if .takenCourses.showGrades }}ml-1{{ else }}ml-2{{ end }}"
+                                    <button type="button" class="btn btn-link show-more-btn hidden pt-0 {{ if .takenCourses.showGrades }}ms-1{{ else }}ms-2{{ end }}"
                                     id="show-less-btn">{{ i18n "show_less"}}</button>
                                 {{ end }}
                             </div>
@@ -104,6 +116,14 @@
                                     <li>{{ . | markdownify }}</li>
                                 {{ end }}
                                 </ul>
+                            </div>
+                            {{ end }}
+                            {{ if .customSections }}
+                            <div class="custom-section">
+                                {{ range .customSections }}
+                                    <h6 class="text-heading">{{ .name }}: </h6>
+                                    <div class="custom-content">{{ .content | markdownify }}</div>
+                                {{ end }}
                             </div>
                             {{ end }}
                         </div>

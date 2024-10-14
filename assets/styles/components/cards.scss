@@ -18,11 +18,12 @@
   }
 
   .card-body {
-    text-align: justify;
+    text-align: left;
   }
 
   .card-img-top {
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     @include transition();
   }
 
@@ -50,6 +51,7 @@
 
   .post-card-link {
     text-decoration: none !important;
+    color: get-light-color('text-color');
   }
 
   .card {
@@ -60,7 +62,8 @@
     &:focus {
       .card-img-top {
         transform: scale(1.2);
-        object-fit: cover;
+        -o-object-fit: cover;
+           object-fit: cover;
         @include transition();
       }
     }

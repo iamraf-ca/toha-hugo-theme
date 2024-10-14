@@ -22,7 +22,7 @@ module:
   mounts:
   - source: static/files
     target: static/files
-  - source: ./node_modules/flag-icon-css/flags
+  - source: ./node_modules/flag-icons/flags
     target: static/flags
   - source: ./node_modules/@fontsource/mulish/files
     target: static/files
@@ -33,14 +33,18 @@ module:
 # For any more details, you can check the official documentation: https://gohugo.io/content-management/multilingual/
 languages:
   en:
+    languageCode: en
     languageName: English
+    title: "John's Blog"
     weight: 1
   bn:
+    languageCode: bn
     languageName: বাংলা
-    weight: 3
+    title: "জনের ব্লগ"
+    weight: 2
 
-# Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weight" should rocks.
-# DefaultContentLanguage: bn
+# default language for the content
+defaultContentLanguage: en
 
 # Allow raw html in markdown file
 markup:
@@ -89,7 +93,20 @@ params:
 
     # Enable dark theme
     darkMode:
+    
+    # [Deprecated] Enable dark theme
+    # This is a deprecated setting, but has not been removed to maintain backward compatibility
+    # If `theme` is set, the `darkMode` setting will be discarded.
+    # darkMode:
+    #   enable: true
+
+    # Configure theme color settings
+    theme:
       enable: true
+      services:
+        light: true # enable light theme. default "true"
+        dark: true # enable dark theme. default "true"
+        default: system # can be either light, dark or system. default "system"
 
     # Enable and configure portfolio
     portfolio:
@@ -98,6 +115,7 @@ params:
     # Enable and configure blog posts
     blog:
       enable: true
+      showAuthor: true
       # Share post on different social media
       shareButtons:
         facebook: true
@@ -169,6 +187,11 @@ params:
         # matomo:
         #   instance: matomo.example.com
         #   siteId: 1 # Or any other number
+        # # Umami
+        # umami:
+        #   scheme: https
+        #   instance: umami.example.com
+        #   id: <your umami site id>
 
     # Enable Support
     support:
@@ -265,6 +288,10 @@ params:
           # options doc: https://github.com/sampotts/plyr#options
           # fullscreen: true
     
+    # Enables copy code button
+    copyCodeButton:
+      enable: true
+
     # Enable reading time support in post cards and in post pages
     readingTime:
       enable: true

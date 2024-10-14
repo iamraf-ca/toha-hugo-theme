@@ -49,6 +49,15 @@
   color: get-light-color('muted-text-color');
 }
 
+.navbar-toggler {
+  border: none;
+  &:focus {
+    border: none;
+    outline: none !important;
+    box-shadow: none;
+  }
+}
+
 .tags {
   text-align: left;
   padding-top: 0.5em;
@@ -56,14 +65,12 @@
     font-size: 0.5em;
     list-style-type: none;
     display: inline-block;
-    background: get-light-color('accent-color');
     margin-left: 0.2em;
     margin-right: 0.2em;
     margin-top: 0.6em;
     margin-bottom: 0.6em;
   }
   a {
-    color: get-light-color('text-over-accent-color');
     text-decoration: none !important;
   }
 }
@@ -92,6 +99,40 @@
   &:active {
     background-color: get-light-color('hover-over-accent-color') !important;
     @include transition();
+  }
+}
+
+.copy-code-button {
+  float: right;
+  margin-top: 0.5em;
+  margin-left: -2.6em;
+  margin-right: 3em;
+
+  background-color: get-light-color('text-color') !important;
+  color: get-light-color('inverse-text-color') !important;
+  padding: 0.25rem 0.5rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+  border: none;
+
+  &:hover,
+  &:focus {
+    background-color: get-light-color('accent-color') !important;
+    color: get-light-color('text-over-accent-color') !important;
+    @include transition();
+  }
+  &:focus {
+    &::before {
+      content: 'Copied!';
+      position: absolute;
+      padding: 0.3em;
+      border-radius: 0.2em;
+      margin-left: -5em;
+      margin-top: -0.2em;
+      background-color: get-light-color('accent-color') !important;
+      color: get-light-color('text-over-accent-color') !important;
+      @include transition();
+    }
   }
 }
 
@@ -143,17 +184,6 @@ html[data-theme='dark'] {
     color: get-dark-color('muted-text-color');
   }
 
-  .tags {
-    li {
-      background: get-dark-color('accent-color');
-      a {
-        background-color: get-dark-color('bg-card');
-        border: 1px solid get-dark-color('muted-text-color');
-        color: get-dark-color('text-over-accent-color');
-      }
-    }
-  }
-
   .icon-button {
     background-color: get-dark-color('muted-text-color');
     color: get-dark-color('text-over-accent-color') !important;
@@ -171,6 +201,17 @@ html[data-theme='dark'] {
     &:hover,
     &:active {
       background-color: get-dark-color('hover-over-accent-color') !important;
+    }
+  }
+  .copy-code-button {
+    background-color: get-dark-color('bg-primary') !important;
+    color: get-dark-color('muted-text-color') !important;
+
+    &:hover,
+    &:focus,
+    &::before {
+      background-color: get-dark-color('accent-color') !important;
+      color: get-dark-color('text-over-accent-color') !important;
     }
   }
 }
